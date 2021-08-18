@@ -1,0 +1,14 @@
+*~
+*.tmp
+*.sw[op]
+*.py[co]
+*.db
+*.egg-info
+.DS_Store
+__pycache__
+log/
+build/
+dist/
+MDB_ID
+venv
+*.sqlite3

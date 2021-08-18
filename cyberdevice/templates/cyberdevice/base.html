@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+    <!--link rel="icon" href="{% static "images/favicon.ico" %}"-->
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'cyberdevice/css/style.css' %}">
+
+    {% block da_css %}{% endblock %}
+
+    <title>{% block title %}CyberDevice{% endblock %}</title>
+  </head>
+  <body class="row text-center mt-4">
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 offset-lg-1 px-3">
+      <div class="qrcode-title mb-4">Please scan following QRCode</div>
+      <div class="mb-2">
+        <h5 class="players visually-hidden">player1</h5>
+        <div id="qrcode1"></div>
+      </div>
+      <div>
+        <h5 class="players visually-hidden">player2</h5>
+        <div id="qrcode2"></div>
+      </div>
+    </div>
+
+    <div id="da_container" class="col-xs-12 col-sm-8 col-md-8 col-lg-7">
+      {% block da %}{% endblock %}
+    </div>
+
+    <script defer src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="{% static 'cyberdevice/js/projMgr.js' %}"></script>
+
+    <script type="text/javascript">
+      var ec_endpoint = '{{ ec_endpoint }}';
+      var ag_endpoint = '{{ ag_endpoint }}';
+      var ag_username = '{{ ag_username }}';
+      var ag_password = '{{ ag_password }}';
+    </script>
+    {% block da_script %}{% endblock %}
+  </body>
+</html>

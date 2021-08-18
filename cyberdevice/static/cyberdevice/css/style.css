@@ -1,0 +1,10 @@
+body {
+	width: 100%;
+}
+.qrcode-title {
+	font-size: 35px;
+}
+
+#da_container {
+	height: 80vh;
+}

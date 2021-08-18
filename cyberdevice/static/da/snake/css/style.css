@@ -1,0 +1,40 @@
+p {
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+}
+
+#snake_da {
+  height: 100%;
+}
+
+#buttonContainer {
+    padding-top: 5px;
+    padding-bottom: 15px;
+}
+
+#helpBox {
+  position: absolute;
+  display: none;
+  top: 10%;
+  left: 10%;
+}
+
+#helpContainer {
+  position: relative;
+}
+
+#helpContainer button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+#helpContainer img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(80vw - 20px)!important;
+  height: calc(80vh - 20px)!important;
+}
