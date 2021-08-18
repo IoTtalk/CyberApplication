@@ -65,7 +65,10 @@ class Smartphone(View):
         return render(
             request,
             self.template_name,
-            { 'do_id': do_id }
+            {
+                'ec_endpoint': settings.EC_ENDPOINT,
+                'do_id': do_id,
+            }
         )
 
     def get(self, request, *args, **kwargs):

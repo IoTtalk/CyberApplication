@@ -18,7 +18,7 @@ from django.conf.urls import url, include
 from cyberdevice.views import CyberDevice, EcEndpoint, Index, Smartphone
 
 urlpatterns = [
-    url(r'^$', Index.as_view()),
+    url(r'^index/$', Index.as_view()),
     url(r'^ec_endpoint/', EcEndpoint.as_view()),
     url(r'^da/(?P<da_name>[\w-]+)/$', CyberDevice.as_view()),
     url(r'^smartphone/(?P<do_id>[0-9]+)/$', Smartphone.as_view()),

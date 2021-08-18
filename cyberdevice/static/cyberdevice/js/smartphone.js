@@ -204,8 +204,8 @@
         'Orientation-I': 1 / 2,
       },
       profile: {
-        //is_sim: true,
-        //do_id: do_id,
+        is_sim: true,
+        do_id: do_id,
       }
     });
 
