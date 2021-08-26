@@ -1,0 +1,113 @@
+{
+  "DeviceFeature": [
+    {
+      "comment": "3 float type parameters to catch Orientation-I data in Smartphone",
+      "df_parameter": [
+        {
+          "max": 360.0,
+          "min": 0.0,
+          "param_type": "float",
+        },
+        {
+          "max": 180.0,
+          "min": -180.0,
+          "param_type": "float",
+        },
+        {
+          "max": 90.0,
+          "min": -90.0,
+          "param_type": "float",
+        }
+      ],
+      "df_category": "None",
+      "df_type": "output",
+      "df_name": "Orientation-O1"
+    },
+    {
+      "comment": "3 float type parameters to catch Orientation-I data in Smartphone",
+      "df_parameter": [
+        {
+          "max": 360.0,
+          "min": 0.0,
+          "param_type": "float",
+        },
+        {
+          "max": 180.0,
+          "min": -180.0,
+          "param_type": "float",
+        },
+        {
+          "max": 90.0,
+          "min": -90.0,
+          "param_type": "float",
+        }
+      ],
+      "df_category": "None",
+      "df_type": "output",
+      "df_name": "Orientation-O2"
+    },
+    {
+      "comment": "3 float type parameters to catch Acceleration-I data in Smartphone",
+      "df_parameter": [
+        {
+          "max": 0.0,
+          "min": 1.0,
+          "param_type": "float",
+        },
+        {
+          "max": 0.0,
+          "min": 1.0,
+          "param_type": "float",
+        },
+        {
+          "max": 0.0,
+          "min": 1.0,
+          "param_type": "float",
+        }
+      ],
+      "df_category": "None",
+      "df_type": "output",
+      "df_name": "Acceleration-O1"
+    },
+    {
+      "comment": "3 float type parameters to catch Acceleration-I data in Smartphone",
+      "df_parameter": [
+        {
+          "max": 0.0,
+          "min": 1.0,
+          "param_type": "float",
+        },
+        {
+          "max": 0.0,
+          "min": 1.0,
+          "param_type": "float",
+        },
+        {
+          "max": 0.0,
+          "min": 1.0,
+          "param_type": "float",
+        }
+      ],
+      "df_category": "None",
+      "df_type": "output",
+      "df_name": "Acceleration-O2"
+    }
+  ],
+  "DeviceModel": [
+    {
+      "dm_name": "SnakeMove",
+      "df_list": [
+        "Orientation-O1"
+      ]
+    },
+    {
+      "dm_name": "Bombman",
+      "df_list": [
+        "Acceleration-O1",
+        "Acceleration-O2",
+        "Orientation-O1",
+        "Orientation-O2"
+      ]
+    }
+  ]
+}
