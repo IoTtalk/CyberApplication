@@ -1,5 +1,5 @@
 const da_register = (do_id=null) => {
-	let Orientation_O = (data)=>{
+	let Orientation_O1 = (data)=>{
 		offsetX = data[2] * 20;
 		offsetY = data[1] * 20;
 	}
@@ -7,13 +7,9 @@ const da_register = (do_id=null) => {
 	let da = new iottalkjs.DAI({
 		apiUrl: ec_endpoint,
 		deviceModel: 'SnakeMove',
-		odfList: [[Orientation_O, ['None']]],
-		pushInterval: 1,
-		interval: {
-			Orientation_O: 1 / 2,
-		},
+		odfList: [[Orientation_O1, ['None', 'None', 'None']]],
 		profile: {
-			'is_sim': true,
+			'is_sim': do_id != null,
 			'do_id': do_id,
 		}
 	});
@@ -21,8 +17,8 @@ const da_register = (do_id=null) => {
 };
 
 project_init({
-	'dos': [
-		{
+	'dos': {
+		'smartphone': {
 			'dm_name': 'Smartphone',
 			'dfs': ['Orientation-I'],
 			'callback': (do_id)=>{
@@ -31,13 +27,13 @@ project_init({
 				gen_qrcode(url);
 			},
 		},
-		{
+		'snake': {
 			'dm_name': 'SnakeMove',
-			'dfs': ['Orientation-O'],
+			'dfs': ['Orientation-O1'],
 			'callback': da_register,
 		}
-	],
+	},
 	'joins': [
-		['Smartphone', 'Orientation-I'], ['SnakeMove', 'Orientation-O']
+		[['smartphone', 'Orientation-I'], ['snake', 'Orientation-O1']]
 	]
 });

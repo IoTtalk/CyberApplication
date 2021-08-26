@@ -1,22 +1,17 @@
-$(()=>{
-	if(typeof qrcode1_html !== 'undefined' && qrcode1_html){
-		gen_qrcode(qrcode1_html);
-	}
-	if(typeof qrcode2_html !== 'undefined' && qrcode2_html){
-		gen_qrcode(qrcode2_html, 'qrcode2');
-	}
-})
-
 const gen_qrcode = (html, id='qrcode1') => {
 	if(html){
 		// if has qrcode2, show players text
-		if(id === ' qrcode2') {
+		if(id === 'qrcode2') {
 			$('.players').removeClass('visually-hidden');
 		}
 
 		// gen qrcode
 		$('#' + id).qrcode({'width': 196, 'height': 196, 'text': html});
 	}
+}
+
+const gen_qrcode2 = (html) => {
+	gen_qrcode(html, 'qrcode2');
 }
 
 const ccmapi = function() {
@@ -79,31 +74,46 @@ const project_init = (profile) => {
 	/* example:
 
 		profile = {
-			'dos': [
-				{
+			'dos': {
+				'dummy1': {
 					'dm_name': 'Dummy_Device',
 					'dfs': ['DummySensor-I', 'DummyControl-O']],
-					'callback': callback, // return do_id for da register to autobind
-				}
-			],
+					'callback': dd1_callback, // return do_id for da register to autobind
+				},
+				'dummy2': {
+					'dm_name': 'Dummy_Device',
+					'dfs': ['DummyControl-O']],
+					'callback': dd2_callback, // return do_id for da register to autobind
+				},
+				'smartphone': {
+					'dm_name': 'Smartphone',
+					'dfs': ['Acceleration-I']],
+					'callback': sp_callback, // return do_id for da register to autobind
+				}, 
+
+			},
 			'joins': [
-				['Dummy_Device', 'DummySensor-I'], ['Dummy_Device', 'DummyControl-O']
+				[['dummy1', 'DummySensor-I'], ['dummy1', 'DummyControl-O']],
+				[['Smartphone', 'Acceleration-I'], ['dummy2', 'DummyControl-O']]
 			]
 		}
 	*/
 	let p_id;
+	let do_creates_count = 0;
 	let do_ids = {}; // Save the created DeviceObject id for NetworkApplication creation
 
 	let naCreate = () => {
-		let joins = [];
+		profile.joins.forEach((join) => {
+			let payload = [];
 
-		// fetch do_id
-		profile.joins.forEach(([dm, df]) => {
-			joins.push([do_ids[dm], df]);
+			// fetch do_id
+			join.forEach(([name, df]) => {
+				payload.push([profile.dos[name]['do_id'], df]);
+			})
+
+			// create Network Application
+			ccmapi.naCreate(p_id, payload);
 		})
-
-		// create Network Application
-		ccmapi.naCreate(p_id, joins);
 
 		//turn on Project
 		ccmapi.projectOn(p_id);
@@ -117,20 +127,22 @@ const project_init = (profile) => {
 	// create Project
 	ccmapi.projectCreate(random_string(), (result) => {
 		p_id = result;
-		profile.dos.forEach((do_) => {
+		for (let do_key in profile.dos){
+			let do_ = profile.dos[do_key];
 			// create Device Object
 			ccmapi.doCreate(p_id, do_.dm_name, do_.dfs, (result) => {
-				do_ids[do_.dm_name] = result;
+				do_creates_count++;
+				do_['do_id'] = result;
 
 				// call DA callback, to create device
 				do_.callback(result);
 
 				// check all do is created, then create na.
-				if(Object.keys(do_ids).length == profile.dos.length) {
+				if(Object.keys(profile.dos).length == do_creates_count) {
 					naCreate();
 				}
 			})
-		})
+		}
 
 		// delete project before unload
 		let existingHandler = window.onbeforeunload;
@@ -139,4 +151,12 @@ const project_init = (profile) => {
 				ccmapi.projectDelete(p_id);
 		}
 	});
+}
+
+if(typeof qrcode1_html !== 'undefined' && qrcode1_html){
+	gen_qrcode(qrcode1_html);
+
+	if(typeof qrcode2_html !== 'undefined' && qrcode2_html){
+		gen_qrcode(qrcode2_html, 'qrcode2');
+	}
 }
