@@ -1,0 +1,29 @@
+.container {
+    width: 545px;
+}
+
+body{
+	background-color: #f6f5e9;
+}
+
+#game {
+    margin: auto;
+    text-align: center;
+}
+
+#bomberman-img {
+    width: 60px;
+    height: 85px;
+    display: block;
+    float: left;
+    margin-right: 10px;
+}
+
+h1 {
+    line-height: 85px;
+    margin-bottom: 0;
+}
+
+h1 strong {
+    color: #FF4444;
+}

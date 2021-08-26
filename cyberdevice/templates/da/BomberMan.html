@@ -1,0 +1,51 @@
+{% extends "cyberdevice/base.html" %}
+{% load static %}
+
+{% block favicon %}
+	<meta property="og:image" content="http://matousskala.cz/files/bomberman_screen.png" />
+	<link rel="shortcut icon" type="image/x-icon" href="{% static 'da/BomberMan/img/favicon.png' %}">
+{% endblock %}
+
+{% block title %}Bomberman{% endblock %}
+
+{% block da_css %}
+	<link rel="stylesheet" href="{% static 'da/BomberMan/css/style.css' %}">
+{% endblock %}
+
+{% block da %}
+	<div class="container">
+		<div class="page-header">
+			<image id="bomberman-img" src="{% static 'da/BomberMan/img/bomberman.png' %}">
+			<h1>Bomber<strong>man</strong></h1>
+		</div>
+		<div id="game">
+			<canvas id="canvas" width="545" height="416"></canvas>
+		</div>
+		<h3>How to play</h3>
+		<h5>● 手機傾斜方向 &hellip; move</h5>
+		<h5>● 上下甩動 &hellip; plant the bomb</h5>
+
+	</div>
+{% endblock %}
+
+{% block da_script %}
+	<script defer src="https://cdnjs.cloudflare.com/ajax/libs/EaselJS/0.8.0/easeljs.min.js" integrity="sha512-Etud5tJmzS9h1BLtTkHN9AyaQQ4nSYahyfnH7yFpkAVFwzAxmwl6zzUxuTQBhThu5EwhqvYQ7VE62tNw/0KuXw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script defer src="https://cdnjs.cloudflare.com/ajax/libs/PreloadJS/0.6.1/preloadjs.min.js" integrity="sha512-IWEAJqnUvb97Cjo8vsKZIOS/NnvvxCt8EQlTZcxEsQ93qTtidg9otVzKI4T2aUirEcx4U5r7/LOV62uhYYCBRw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script defer src="https://cdnjs.cloudflare.com/ajax/libs/SoundJS/0.6.1/soundjsmin.js" integrity="sha512-6NDYT04jyHyvB8alDNl0ijJ629+1nyEzJpNbTvpy09bJlneA3+0OI9NgA5c9w+eThZ9UXMgWkjJ/GKFZZ46cHg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+	<script defer src="{% static 'da/BomberMan/js/core.js' %}"></script>
+	<script defer src="{% static 'da/BomberMan/js/Utils.js' %}"></script>
+	<script defer src="{% static 'da/BomberMan/js/Entity.js' %}"></script>
+	<script defer src="{% static 'da/BomberMan/js/Player.js' %}"></script>
+	<script defer src="{% static 'da/BomberMan/js/Sniper.js' %}"></script>
+	<script defer src="{% static 'da/BomberMan/js/Bot.js' %}"></script>
+	<script defer src="{% static 'da/BomberMan/js/Bonus.js' %}"></script>
+	<script defer src="{% static 'da/BomberMan/js/Tile.js' %}"></script>
+	<script defer src="{% static 'da/BomberMan/js/Fire.js' %}"></script>
+	<script defer src="{% static 'da/BomberMan/js/Bomb.js' %}"></script>
+	<script defer src="{% static 'da/BomberMan/js/Menu.js' %}"></script>
+	<script defer src="{% static 'da/BomberMan/js/InputEngine.js' %}"></script>
+	<script defer src="{% static 'da/BomberMan/js/GameEngine.js' %}"></script>
+
+	<script defer src="{% static 'da/BomberMan/js/ida.js' %}"></script>
+{% endblock %}
