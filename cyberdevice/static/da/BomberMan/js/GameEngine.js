@@ -61,24 +61,24 @@ GameEngine = Class.extend({
             that.setup();
         });
         queue.loadManifest([
-            {id: "playerBoy", src: "/static/da/BomberMan/img/george.png"},
-            {id: "playerGirl", src: "/static/da/BomberMan/img/betty.png"},
-            {id: "playerGirl2", src: "/static/da/BomberMan/img/betty2.png"},
+            {id: "playerBoy", src: "/cyberdevice/static/da/BomberMan/img/george.png"},
+            {id: "playerGirl", src: "/cyberdevice/static/da/BomberMan/img/betty.png"},
+            {id: "playerGirl2", src: "/cyberdevice/static/da/BomberMan/img/betty2.png"},
             /* change */
-            {id: "sniper", src: "/static/da/BomberMan/img/sniper.png"},
+            {id: "sniper", src: "/cyberdevice/static/da/BomberMan/img/sniper.png"},
             /* change */
-            {id: "tile_grass", src: "/static/da/BomberMan/img/tile_grass.png"},
-            {id: "tile_wall", src: "/static/da/BomberMan/img/tile_wall.png"},
-            {id: "tile_wood", src: "/static/da/BomberMan/img/tile_wood.png"},
-            {id: "bomb", src: "/static/da/BomberMan/img/bomb.png"},
-            {id: "fire", src: "/static/da/BomberMan/img/fire.png"},
-            {id: "bonuses", src: "/static/da/BomberMan/img/bonuses.png"}
+            {id: "tile_grass", src: "/cyberdevice/static/da/BomberMan/img/tile_grass.png"},
+            {id: "tile_wall", src: "/cyberdevice/static/da/BomberMan/img/tile_wall.png"},
+            {id: "tile_wood", src: "/cyberdevice/static/da/BomberMan/img/tile_wood.png"},
+            {id: "bomb", src: "/cyberdevice/static/da/BomberMan/img/bomb.png"},
+            {id: "fire", src: "/cyberdevice/static/da/BomberMan/img/fire.png"},
+            {id: "bonuses", src: "/cyberdevice/static/da/BomberMan/img/bonuses.png"}
         ]);
 
         createjs.Sound.addEventListener("fileload", this.onSoundLoaded);
         createjs.Sound.alternateExtensions = ["mp3"];
-        createjs.Sound.registerSound("/static/da/BomberMan/sound/bomb.ogg", "bomb");
-        createjs.Sound.registerSound("/static/da/BomberMan/sound/game.ogg", "game");
+        createjs.Sound.registerSound("/cyberdevice/static/da/BomberMan/sound/bomb.ogg", "bomb");
+        createjs.Sound.registerSound("/cyberdevice/static/da/BomberMan/sound/game.ogg", "game");
 
         // Create menu
         this.menu = new Menu();
