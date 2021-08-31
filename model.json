@@ -108,6 +108,13 @@
         "Orientation-O1",
         "Orientation-O2"
       ]
+    },,
+    {
+      "dm_name": "Paddle",
+      "df_list": [
+        "Orientation-O1",
+        "Orientation-O2"
+      ]
     }
   ]
 }
