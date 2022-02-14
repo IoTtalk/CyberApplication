@@ -12,8 +12,17 @@ def get_da_list():
 
     return da_list
 
+# load vp list
+def get_vp_list():
+    dirs = os.listdir(os.path.join('', 'cyberdevice/static/vp'))
+    vp_list = [vp for vp in dirs]
+
+    return vp_list
+
 da_list = get_da_list()
+vp_list = get_vp_list()
 print('da_list', da_list)
+print('vp_list', vp_list)
 
 
 class Index(View):
