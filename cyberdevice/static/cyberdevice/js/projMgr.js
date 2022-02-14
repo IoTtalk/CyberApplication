@@ -20,14 +20,16 @@ const ccmapi = function() {
 	let debug_callback = (d) => { if (DEBUG) {console.log(d);}};
 
 	let ag_request = (op, payload, callback) => {
+		let json = {'api_name': op, 'payload': payload}
+		if (ag_username && ag_password) {
+			json['username'] = ag_username
+			json['password'] = ag_password
+		} else if (ag_accesstoken) {
+			json['access_token'] = ag_accesstoken
+		}
 		axios.post(
 			ag_endpoint,
-			json={
-				'username': ag_username,
-				'password': ag_password,
-				'api_name': op,
-				'payload': payload
-			}
+			json=json
 		).then((request) => {
 			if(request.data.state == 'ok' && callback){
 				callback(request.data.result);

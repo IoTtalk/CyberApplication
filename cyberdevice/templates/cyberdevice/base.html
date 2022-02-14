@@ -46,10 +46,11 @@
     <script defer src="{% static 'cyberdevice/js/projMgr.js' %}"></script>
 
     <script type="text/javascript">
-      var ec_endpoint = '{{ ec_endpoint }}';
-      var ag_endpoint = '{{ ag_endpoint }}';
-      var ag_username = '{{ ag_username }}';
-      var ag_password = '{{ ag_password }}';
+      const ec_endpoint = '{{ ec_endpoint }}';
+      const ag_endpoint = '{{ ag_endpoint }}';
+      const ag_username = '{{ ag_username }}';
+      const ag_password = '{{ ag_password }}';
+      const ag_accesstoken = '{{ ag_accesstoken }}';
     </script>
     {% block da_script %}{% endblock %}
   </body>
