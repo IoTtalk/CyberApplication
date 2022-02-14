@@ -50,7 +50,7 @@ class CyberDevice(View):
                 'ag_endpoint': settings.AG_ENDPOINT,
                 'ag_username': settings.AG_USERNAME,
                 'ag_password': settings.AG_PASSWORD,
-                'ag_accesstoken': settings.ag_accesstoken,
+                'ag_access_token': settings.AG_ACCESS_TOKEN,
             }
         )
 

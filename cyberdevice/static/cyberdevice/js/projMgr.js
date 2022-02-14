@@ -24,8 +24,8 @@ const ccmapi = function() {
 		if (ag_username && ag_password) {
 			json['username'] = ag_username
 			json['password'] = ag_password
-		} else if (ag_accesstoken) {
-			json['access_token'] = ag_accesstoken
+		} else if (ag_access_token) {
+			json['access_token'] = ag_access_token
 		}
 		axios.post(
 			ag_endpoint,
