@@ -59,6 +59,28 @@ class CyberDevice(View):
         return self._render(request, da_name)
 
 
+class VPython(View):
+    template_name = 'vp/base.html'
+
+    def _render(self, request, vp_name):
+        return render(
+            request,
+            self.template_name,
+            {
+                'vp_name': vp_name,
+                'ec_endpoint': settings.EC_ENDPOINT,
+                'ag_endpoint': settings.AG_ENDPOINT,
+                'ag_username': settings.AG_USERNAME,
+                'ag_password': settings.AG_PASSWORD,
+                'ag_access_token': settings.AG_ACCESS_TOKEN,
+            }
+        )
+
+    def get(self, request, *args, **kwargs):
+        da_name = self.kwargs['vp_name']
+        return self._render(request, vp_name)
+
+
 class Smartphone(View):
     template_name = 'cyberdevice/smartphone.html'
 
