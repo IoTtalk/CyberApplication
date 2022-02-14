@@ -25,7 +25,7 @@ Pong = {
   },
 
   Images: [
-    "/static/da/PingPong/img/winner.png"
+    "/cyberdevice/static/da/PingPong/img/winner.png"
   ],
 
   //-----------------------------------------------------------------------------
