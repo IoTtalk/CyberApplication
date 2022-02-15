@@ -115,6 +115,6 @@ projectInit({
     }
   },
   'joins': [
-    [['smartphone', 'Orientation-I'], ['snake', 'Orientation-O1']]
+    [['smartphone', 'Acceleration-I'], ['ball', 'Speed-O']]
   ]
 });
