@@ -83,18 +83,47 @@ def balljump(spd):
     
     jump()
 
-def Speed(data):
+def Speed_O(data):
     if data != None:
         balljump(data[0])
 
-def setup():
+def setup(do_id=None):
     profile = {
         'dm_name': 'Ball-throw2',
         'odf_list': [Speed],
     }
 
-    dai(profile)
+
+    da = iottalkjs.DAI({
+        'apiUrl': ecEndpoint,
+        'deviceModel': 'Ball-throw2',
+        'odfList': [Speed_O],
+        'profile': {
+            'is_sim': do_id != null,
+            'do_id': do_id,
+        }
+    });
+    da.run();
     playAudio('Startup.wav')
 
-setup()
-
+projectInit({
+  'dos': {
+    'smartphone': {
+      'dm_name': 'Smartphone',
+      'dfs': ['Acceleration-I'],
+      'callback': (do_id)=>{
+        let url = `${window.location.protocol}//${window.location.host}/cyberdevice/smartphone/${do_id}/`;
+        console.log(url);
+        genQrcode(url);
+      },
+    },
+    'snake': {
+      'dm_name': 'SnakeMove',
+      'dfs': ['Orientation-O1'],
+      'callback': setup,
+    }
+  },
+  'joins': [
+    [['smartphone', 'Orientation-I'], ['snake', 'Orientation-O1']]
+  ]
+});
