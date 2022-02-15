@@ -4,15 +4,15 @@
 {% block title %}Pong!{% endblock %}
 
 {% block da_css %}
-	<link rel="stylesheet" href="{% static 'da/PingPong/css/pong.css' %}" type="text/css" media="screen, print"/>
+  <link rel="stylesheet" href="{% static 'da/PingPong/css/pong.css' %}" type="text/css" media="screen, print"/>
 {% endblock %}
 
 {% block da %}
-	<canvas id="game"></canvas>
+  <canvas id="game"></canvas>
 {% endblock %}
 
 {% block da_script %}
-	<script defer src="{% static 'da/PingPong/js/game.js' %}"></script>
-	<script defer src="{% static 'da/PingPong/js/pong.js' %}"></script>
-	<script defer src="{% static 'da/PingPong/js/ida.js' %}"></script>
+  <script defer src="{% static 'da/PingPong/js/game.js' %}"></script>
+  <script defer src="{% static 'da/PingPong/js/pong.js' %}"></script>
+  <script defer src="{% static 'da/PingPong/js/ida.js' %}"></script>
 {% endblock %}

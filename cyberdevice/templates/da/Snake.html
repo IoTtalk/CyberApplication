@@ -2,361 +2,361 @@
 {% load static %}
 
 {% block da_css %}
-		<link rel="stylesheet" href="{% static 'da/snake/css/style.css' %}"/>
+  <link rel="stylesheet" href="{% static 'da/snake/css/style.css' %}"/>
 {% endblock %}
 
 {% block da %}
-	<div id="snake_da">
-		<p>
-			<script type="application/processing">
-				PImage img_bg;
-				PImage img_wall;
-				PImage img_apple;
-				PImage img_heart;
-				PImage img_gamestart;
-				PImage img_gameover;
+  <div id="snake_da">
+    <p>
+      <script type="application/processing">
+        PImage img_bg;
+        PImage img_wall;
+        PImage img_apple;
+        PImage img_heart;
+        PImage img_gamestart;
+        PImage img_gameover;
 
-				PFont font;
+        PFont font;
 
-				int width = $('#snake_da').width() - 30;
-				int height = $('#snake_da').height() - 64;
-				int top_height = 43;
-				int apple_width = 57;
-				int apple_height = 43;
-				
-				int wall_left = width / 30;
-				int wall_right = width * 29 / 30;
-				int wall_top = (height - top_height) * 1 / 20 + top_height;
-				int wall_bottom = (height - top_height) * 19 / 20 + top_height;
+        int width = $('#snake_da').width() - 30;
+        int height = $('#snake_da').height() - 64;
+        int top_height = 43;
+        int apple_width = 57;
+        int apple_height = 43;
+        
+        int wall_left = width / 30;
+        int wall_right = width * 29 / 30;
+        int wall_top = (height - top_height) * 1 / 20 + top_height;
+        int wall_bottom = (height - top_height) * 19 / 20 + top_height;
 
-				start_flag = 0;
-				restart_flag = 0;
-				int over = 0;
-				int score = 0;
-				int lifes = 3;
-				int bump_timer = 0;
-				int bump_flag = 0;
-				float segLength = 10;
-				int Slength = 10;
+        start_flag = 0;
+        restart_flag = 0;
+        int over = 0;
+        int score = 0;
+        int lifes = 3;
+        int bump_timer = 0;
+        int bump_flag = 0;
+        float segLength = 10;
+        int Slength = 10;
 
-				float[] body_x = new float[10000];
-				float[] body_y = new float[10000];
-				float pos_x = (wall_left + wall_right) / 2;
-				float pos_y = (wall_top + wall_bottom) / 2;
-				int apple_x;
-				int apple_y;
-				offsetX = 0;
-				offsetY = 0;
+        float[] body_x = new float[10000];
+        float[] body_y = new float[10000];
+        float pos_x = (wall_left + wall_right) / 2;
+        float pos_y = (wall_top + wall_bottom) / 2;
+        int apple_x;
+        int apple_y;
+        offsetX = 0;
+        offsetY = 0;
 
-				void getRandom(min, max) {
-					return Math.floor(Math.random() * (max - min + 1)) + min;
-				};
+        void getRandom(min, max) {
+          return Math.floor(Math.random() * (max - min + 1)) + min;
+        };
 
-				void generate_apple() {
-					apple_x = getRandom(wall_left + 20, wall_right - 20 - apple_width);
-					apple_y = getRandom(wall_top + 20, wall_bottom - 20 - apple_height);
-				}
+        void generate_apple() {
+          apple_x = getRandom(wall_left + 20, wall_right - 20 - apple_width);
+          apple_y = getRandom(wall_top + 20, wall_bottom - 20 - apple_height);
+        }
 
-				void setup() {
-					size(width, height);
+        void setup() {
+          size(width, height);
 
-					// load images
-					img_wall = loadImage("{% static 'da/snake/img/wall.jpg' %}");
-					img_bg = loadImage("{% static 'da/snake/img/background.png' %}");
-					img_apple = loadImage("{% static 'da/snake/img/apple.png' %}"); //57 x 43
-					img_heart = loadImage("{% static 'da/snake/img/heart.png' %}"); //45 x 45
-					img_gamestart = loadImage("{% static 'da/snake/img/game_start.png' %}");
-					img_gameover = loadImage("{% static 'da/snake/img/game_over.png' %}");
+          // load images
+          img_wall = loadImage("{% static 'da/snake/img/wall.jpg' %}");
+          img_bg = loadImage("{% static 'da/snake/img/background.png' %}");
+          img_apple = loadImage("{% static 'da/snake/img/apple.png' %}"); //57 x 43
+          img_heart = loadImage("{% static 'da/snake/img/heart.png' %}"); //45 x 45
+          img_gamestart = loadImage("{% static 'da/snake/img/game_start.png' %}");
+          img_gameover = loadImage("{% static 'da/snake/img/game_over.png' %}");
 
-					// load fonts
-					font = loadFont("static/font/ffscala.ttf");
-					textFont(font, 32);
+          // load fonts
+          font = loadFont("static/font/ffscala.ttf");
+          textFont(font, 32);
 
-					// init apple position
-					generate_apple();
-				}
-				
-				void draw() {	
-					if (restart_flag){
-						over = 0;
-						pos_x = (wall_left + wall_right) / 2;
-						pos_y = (wall_top + wall_bottom) / 2;
-						offsetX = 0;
-						offsetY = 0;
-						score = 0;
-						lifes = 3;
-						Slength = 10;
-						restart_flag = 0;
-					}
-					
-					// draw wall
-					image(img_bg, 0, 0, width, height);
-					image(img_wall, 0, top_height, width, height - top_height);
-					image(img_bg, wall_left, wall_top, wall_right - wall_left, wall_bottom - wall_top);
+          // init apple position
+          generate_apple();
+        }
+        
+        void draw() { 
+          if (restart_flag){
+            over = 0;
+            pos_x = (wall_left + wall_right) / 2;
+            pos_y = (wall_top + wall_bottom) / 2;
+            offsetX = 0;
+            offsetY = 0;
+            score = 0;
+            lifes = 3;
+            Slength = 10;
+            restart_flag = 0;
+          }
+          
+          // draw wall
+          image(img_bg, 0, 0, width, height);
+          image(img_wall, 0, top_height, width, height - top_height);
+          image(img_bg, wall_left, wall_top, wall_right - wall_left, wall_bottom - wall_top);
 
-					// draw score
-					fill(255);
-					text("Score: " + score, width / 30, top_height - 10);
+          // draw score
+          fill(255);
+          text("Score: " + score, width / 30, top_height - 10);
 
-					// draw lifes
-					switch (lifes){
-						case 3:
-							image(img_heart, width * 26 / 30, 0);
-						case 2:
-							image(img_heart, width * 27 / 30, 0);
-						case 1:
-							image(img_heart, width * 28 / 30, 0);
-							break;
-						case 0:
-							over = 1;
-							break;
-					}
+          // draw lifes
+          switch (lifes){
+            case 3:
+              image(img_heart, width * 26 / 30, 0);
+            case 2:
+              image(img_heart, width * 27 / 30, 0);
+            case 1:
+              image(img_heart, width * 28 / 30, 0);
+              break;
+            case 0:
+              over = 1;
+              break;
+          }
 
-					// draw apple
-					image(img_apple, apple_x, apple_y);
+          // draw apple
+          image(img_apple, apple_x, apple_y);
 
-					// if it bumps and is still stuck, reset the flag to lose life
-					if (bump_flag) {
-						bump_timer++;
-						if (bump_timer == 200) {
-							bump_flag = 0;
-							bump_timer = 0;
-						}
-					} else {
-						bump_timer = 0;
-					}
-					
-					//check eat apple
-					if (Math.abs(pos_x - (apple_x + apple_width / 2.0)) < apple_width / 2.0 && Math.abs(pos_y - (apple_y + apple_height / 2.0)) < apple_height / 2.0){
-						score++;
-						Slength += 3;
+          // if it bumps and is still stuck, reset the flag to lose life
+          if (bump_flag) {
+            bump_timer++;
+            if (bump_timer == 200) {
+              bump_flag = 0;
+              bump_timer = 0;
+            }
+          } else {
+            bump_timer = 0;
+          }
+          
+          //check eat apple
+          if (Math.abs(pos_x - (apple_x + apple_width / 2.0)) < apple_width / 2.0 && Math.abs(pos_y - (apple_y + apple_height / 2.0)) < apple_height / 2.0){
+            score++;
+            Slength += 3;
 
-						// new apple
-						generate_apple();
-					}
-					
-					if (start_flag && !over) {
-						// set movement
-						if (offsetX > 400){
-							offsetX--;
-							pos_x++;
-						} else if (offsetX < -400) {
-							offsetX++;
-							pos_x--;
-						}
+            // new apple
+            generate_apple();
+          }
+          
+          if (start_flag && !over) {
+            // set movement
+            if (offsetX > 400){
+              offsetX--;
+              pos_x++;
+            } else if (offsetX < -400) {
+              offsetX++;
+              pos_x--;
+            }
 
-						if (offsetY > 400){
-							offsetY--;
-							pos_y++;
-						} else if (offsetY < -400) {
-							offsetY++;
-							pos_y--;
-						}
-						
-						// check dead
-						if (pos_x < wall_left + 20) {
-							pos_x = wall_left + 20;
-							if (!bump_flag){
-								lifes--;
-								bump_flag = 1;
-							}
-						} else if (pos_x > wall_right - 20) {
-							pos_x = wall_right - 20;
-							if (!bump_flag){
-								lifes--;
-								bump_flag = 1;
-							}
-						}
+            if (offsetY > 400){
+              offsetY--;
+              pos_y++;
+            } else if (offsetY < -400) {
+              offsetY++;
+              pos_y--;
+            }
+            
+            // check dead
+            if (pos_x < wall_left + 20) {
+              pos_x = wall_left + 20;
+              if (!bump_flag){
+                lifes--;
+                bump_flag = 1;
+              }
+            } else if (pos_x > wall_right - 20) {
+              pos_x = wall_right - 20;
+              if (!bump_flag){
+                lifes--;
+                bump_flag = 1;
+              }
+            }
 
-						if (pos_y < wall_top + 20){
-							pos_y = wall_top + 20;
-							if (!bump_flag){
-								lifes--;
-								bump_flag = 1;
-							}
-						} else if (pos_y > wall_bottom - 20){
-							pos_y = wall_bottom - 20;
-							if (!bump_flag){
-								lifes--;
-								bump_flag = 1;
-							}
-						}
-					}
+            if (pos_y < wall_top + 20){
+              pos_y = wall_top + 20;
+              if (!bump_flag){
+                lifes--;
+                bump_flag = 1;
+              }
+            } else if (pos_y > wall_bottom - 20){
+              pos_y = wall_bottom - 20;
+              if (!bump_flag){
+                lifes--;
+                bump_flag = 1;
+              }
+            }
+          }
 
-					// draw snake head
-					drawSegment(0, pos_x, pos_y);
-					// draw snake body
-					for (int i=0; i < Slength - 1; i++) {
-						drawSegment(i + 1, body_x[i], body_y[i]);
+          // draw snake head
+          drawSegment(0, pos_x, pos_y);
+          // draw snake body
+          for (int i=0; i < Slength - 1; i++) {
+            drawSegment(i + 1, body_x[i], body_y[i]);
 
-						// check bump
-						if (Math.abs(pos_x - body_x[i]) < 5 && Math.abs(pos_y - body_y[i]) < 5 && !bump_flag){
-							lifes--;
-							bump_flag = 1;
-						}
-					}
+            // check bump
+            if (Math.abs(pos_x - body_x[i]) < 5 && Math.abs(pos_y - body_y[i]) < 5 && !bump_flag){
+              lifes--;
+              bump_flag = 1;
+            }
+          }
 
-					// draw game start
-					if (!start_flag){
-						image(img_gamestart, width * 7 / 30, height * 2 / 20 + top_height, width * 16 / 30, (height - top_height) * 16 / 20 );
-					}
+          // draw game start
+          if (!start_flag){
+            image(img_gamestart, width * 7 / 30, height * 2 / 20 + top_height, width * 16 / 30, (height - top_height) * 16 / 20 );
+          }
 
-					// draw game over
-					if (over){
-						image(img_gameover, width * 7 / 30, height * 2 / 20 + top_height, width * 16 / 30, (height - top_height) * 16 / 20);
-					}
-				}
+          // draw game over
+          if (over){
+            image(img_gameover, width * 7 / 30, height * 2 / 20 + top_height, width * 16 / 30, (height - top_height) * 16 / 20);
+          }
+        }
 
-				void drawSegment(int idx, float xin, float yin) {
-					float dx = xin - body_x[idx];
-					float dy = yin - body_y[idx];
-					float angle = atan2(dy, dx);	
-					body_x[idx] = xin - cos(angle) * segLength;
-					body_y[idx] = yin - sin(angle) * segLength;
-				
-					pushMatrix();
-					translate(body_x[idx], body_y[idx]);
-					rotate(angle);
+        void drawSegment(int idx, float xin, float yin) {
+          float dx = xin - body_x[idx];
+          float dy = yin - body_y[idx];
+          float angle = atan2(dy, dx);  
+          body_x[idx] = xin - cos(angle) * segLength;
+          body_y[idx] = yin - sin(angle) * segLength;
+        
+          pushMatrix();
+          translate(body_x[idx], body_y[idx]);
+          rotate(angle);
 
-					// draw body
-					stroke(34, 150, 0, 255);
+          // draw body
+          stroke(34, 150, 0, 255);
 
-					if (idx <= 6){
-						strokeWeight(25);
-						line(0, 0, 3, 0);
-					}
-					else if (idx == 7){
-						strokeWeight(22);
-						line(0, 0, 3, 0);
-					}
-					else
-					{ 
-						strokeWeight(20);
-						line(0, 0, 2, 0);
-					}
+          if (idx <= 6){
+            strokeWeight(25);
+            line(0, 0, 3, 0);
+          }
+          else if (idx == 7){
+            strokeWeight(22);
+            line(0, 0, 3, 0);
+          }
+          else
+          { 
+            strokeWeight(20);
+            line(0, 0, 2, 0);
+          }
 
-					// draw head
-					if ( idx == 0 ) {
-						// tongue
-						stroke(255, 0, 0, 255);
-						strokeWeight(1.5);
-						line(35, 2, 32, 1);
-						line(38, 0, 35, 2);
+          // draw head
+          if ( idx == 0 ) {
+            // tongue
+            stroke(255, 0, 0, 255);
+            strokeWeight(1.5);
+            line(35, 2, 32, 1);
+            line(38, 0, 35, 2);
 
-						// head
-						strokeWeight(31);
-						noStroke();
-						fill(34, 150, 0, 255);
-						ellipse(segLength, 0, 38, 38);
-						ellipse(segLength+5, 0, 34, 34);
+            // head
+            strokeWeight(31);
+            noStroke();
+            fill(34, 150, 0, 255);
+            ellipse(segLength, 0, 38, 38);
+            ellipse(segLength+5, 0, 34, 34);
 
-						// eyes
-						noStroke();
-						fill(255, 255, 255);
-						ellipse(segLength, -9, 9, 9);
-						ellipse(segLength, 9, 9, 9);
-						fill(0,255);
-						ellipse(segLength+1.5, -8.6, 7, 7);
-						ellipse(segLength+1.5, 8.6, 7, 7);
-						fill(255, 255, 255);
-						ellipse(segLength+2, -8, 2, 2);
-						ellipse(segLength+2, 8, 2, 2);
+            // eyes
+            noStroke();
+            fill(255, 255, 255);
+            ellipse(segLength, -9, 9, 9);
+            ellipse(segLength, 9, 9, 9);
+            fill(0,255);
+            ellipse(segLength+1.5, -8.6, 7, 7);
+            ellipse(segLength+1.5, 8.6, 7, 7);
+            fill(255, 255, 255);
+            ellipse(segLength+2, -8, 2, 2);
+            ellipse(segLength+2, 8, 2, 2);
 
-						// nose
-						fill(0, 255);
-						ellipse(segLength+15, -3.5, 1.5, 2.0);
-						ellipse(segLength+15, 3, 1.5, 2.0);
-					}
+            // nose
+            fill(0, 255);
+            ellipse(segLength+15, -3.5, 1.5, 2.0);
+            ellipse(segLength+15, 3, 1.5, 2.0);
+          }
 
-					// draw totem
-					if (idx < body_x.length && idx > 1) { 
-						if (idx % 3 == 2){		 
-							// triangles
-							fill(230, 217, 51, 255);
-							noStroke();
-							beginShape(TRIANGLES);
-							if (idx > 6){
-								vertex(1, 10);
-								vertex(5, 6);
-								vertex(10, 10);
+          // draw totem
+          if (idx < body_x.length && idx > 1) { 
+            if (idx % 3 == 2){     
+              // triangles
+              fill(230, 217, 51, 255);
+              noStroke();
+              beginShape(TRIANGLES);
+              if (idx > 6){
+                vertex(1, 10);
+                vertex(5, 6);
+                vertex(10, 10);
 
-								vertex(1, -10);
-								vertex(5, -6);
-								vertex(10, -10);
-							}
-							else{
-								vertex(1, 12);
-								vertex(5, 8);
-								vertex(10, 12);
+                vertex(1, -10);
+                vertex(5, -6);
+                vertex(10, -10);
+              }
+              else{
+                vertex(1, 12);
+                vertex(5, 8);
+                vertex(10, 12);
 
-								vertex(1, -12);
-								vertex(5, -8);
-								vertex(10, -12);
-							}
-							endShape();
-						} else if (idx % 3 == 1){
-							fill(10, 10, 10, 130);
-							noStroke();
+                vertex(1, -12);
+                vertex(5, -8);
+                vertex(10, -12);
+              }
+              endShape();
+            } else if (idx % 3 == 1){
+              fill(10, 10, 10, 130);
+              noStroke();
 
-							beginShape(TRIANGLES);
-							vertex(10, -9.5);
-							vertex(3, 0);
-							vertex(10, 9.5);
+              beginShape(TRIANGLES);
+              vertex(10, -9.5);
+              vertex(3, 0);
+              vertex(10, 9.5);
 
-							vertex(9.8, -9.5);
-							vertex(18, 0);
-							vertex(9.8, 9.5);
-							endShape();
-						}
-					}
+              vertex(9.8, -9.5);
+              vertex(18, 0);
+              vertex(9.8, 9.5);
+              endShape();
+            }
+          }
 
-					// draw tail
-					if (idx == Slength - 1) {
-						fill(34, 150, 0, 255);
-						noStroke();
-						ellipse(-7, 0, 25, 18);
-						ellipse(-16, 0, 20, 15);
-						ellipse(-25, 0, 10, 10);
-					}
+          // draw tail
+          if (idx == Slength - 1) {
+            fill(34, 150, 0, 255);
+            noStroke();
+            ellipse(-7, 0, 25, 18);
+            ellipse(-16, 0, 20, 15);
+            ellipse(-25, 0, 10, 10);
+          }
 
-					popMatrix();
-				}
-			</script>
-			<canvas></canvas>
-		</p>
+          popMatrix();
+        }
+      </script>
+      <canvas></canvas>
+    </p>
 
-		<div id="buttonContainer">
-			<button onClick = "popBox()" class="btn btn-danger">Help</button>
-			<button onClick = "start()" class="btn btn-success">Start</button>
-			<button onClick = "restart()" class="btn btn-primary">Restart</button>
-		</div>
+    <div id="buttonContainer">
+      <button onClick = "popBox()" class="btn btn-danger">Help</button>
+      <button onClick = "start()" class="btn btn-success">Start</button>
+      <button onClick = "restart()" class="btn btn-primary">Restart</button>
+    </div>
 
-		<div id="helpBox">
-			<div id="helpContainer">
-				<button onClick="closeBox()" class="btn btn-dark">X</button>
-				<img src="{% static 'da/snake/img/rules.png' %}">
-			</div>
-		</div>
-	</div>
+    <div id="helpBox">
+      <div id="helpContainer">
+        <button onClick="closeBox()" class="btn btn-dark">X</button>
+        <img src="{% static 'da/snake/img/rules.png' %}">
+      </div>
+    </div>
+  </div>
 {% endblock %}
 
 {% block da_script %}
-		<script defer src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.4.0/processing.min.js" integrity="sha512-pe7uxE7ScfoVDk7WyonEoUvpeWEfaY1ox6vLeg/mQF7MvPUl1sEYAkIAYf2b6IAXEbvZ2uXJa3NEQUa0b6aw5A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<script defer src="{% static 'da/snake/js/ida.js' %}"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.4.0/processing.min.js" integrity="sha512-pe7uxE7ScfoVDk7WyonEoUvpeWEfaY1ox6vLeg/mQF7MvPUl1sEYAkIAYf2b6IAXEbvZ2uXJa3NEQUa0b6aw5A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script defer src="{% static 'da/snake/js/ida.js' %}"></script>
 
-		<script type="text/javascript">
-			document.getElementById('snake_da').style.backgroundImage = "url(\"{% static 'da/snake/img/background.png' %}\")";
-			
-			function start(){ start_flag = 1;}
+  <script type="text/javascript">
+    document.getElementById('snake_da').style.backgroundImage = "url(\"{% static 'da/snake/img/background.png' %}\")";
+    
+    function start(){ start_flag = 1;}
 
-			function restart(){ restart_flag = 1;}
+    function restart(){ restart_flag = 1;}
 
-			function popBox(){
-				document.getElementById('helpBox').style.display = "block";
-			}
+    function popBox(){
+      document.getElementById('helpBox').style.display = "block";
+    }
 
-			function closeBox(){
-				document.getElementById('helpBox').style.display = "none";
-			}
-		</script>
+    function closeBox(){
+      document.getElementById('helpBox').style.display = "none";
+    }
+  </script>
 {% endblock %}
