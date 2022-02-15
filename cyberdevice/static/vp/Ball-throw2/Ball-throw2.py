@@ -108,9 +108,9 @@ projectInit({
       'dm_name': 'Smartphone',
       'dfs': ['Acceleration-I'],
     },
-    'snake': {
-      'dm_name': 'SnakeMove',
-      'dfs': ['Orientation-O1'],
+    'ball': {
+      'dm_name': 'Ball-throw2',
+      'dfs': ['Speed-O'],
       'callback': setup,
     }
   },
