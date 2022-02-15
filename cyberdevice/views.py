@@ -8,16 +8,11 @@ from django.views import View
 # load da list
 def get_da_list():
     dirs = os.listdir(os.path.join('', 'cyberdevice/templates/da'))
-    da_list = [da.replace('.html', '') for da in dirs if '.html' in da]
-
-    return da_list
+    return [da.replace('.html', '') for da in dirs if '.html' in da]
 
 # load vp list
 def get_vp_list():
-    dirs = os.listdir(os.path.join('', 'cyberdevice/static/vp'))
-    vp_list = [vp for vp in dirs]
-
-    return vp_list
+    return os.listdir(os.path.join('', 'cyberdevice/static/vp'))
 
 da_list = get_da_list()
 vp_list = get_vp_list()
