@@ -137,7 +137,14 @@ const projectInit = (profile) => {
         do_['do_id'] = result;
 
         // call DA callback, to create device
-        do_.callback(result);
+        // if no callback and dm_name is Smartphone, then auto generate QRCode
+        if (do_.callback) {
+          do_.callback(result);
+        } else if(do_.dm_name == 'Smartphone') {
+          let url = `${window.location.protocol}//${window.location.host}/cyberdevice/smartphone/${result}/`;
+          console.log(url);
+          genQrcode(url);
+        }
 
         // check all do is created, then create na.
         if(Object.keys(profile.dos).length == do_creates_count) {

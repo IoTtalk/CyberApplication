@@ -72,11 +72,6 @@ projectInit({
     'smarphone1': {
       'dm_name': 'Smartphone',
       'dfs': ['Acceleration-I', 'Orientation-I'],
-      'callback': (do_id)=>{
-        let url = `${window.location.protocol}//${window.location.host}/cyberdevice/smartphone/${do_id}/`;
-        console.log(url);
-        genQrcode(url);
-      },
     },
     'smarphone2': {
       'dm_name': 'Smartphone',

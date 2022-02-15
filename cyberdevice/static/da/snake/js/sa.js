@@ -21,11 +21,6 @@ projectInit({
     'smartphone': {
       'dm_name': 'Smartphone',
       'dfs': ['Orientation-I'],
-      'callback': (do_id)=>{
-        let url = `${window.location.protocol}//${window.location.host}/cyberdevice/smartphone/${do_id}/`;
-        console.log(url);
-        genQrcode(url);
-      },
     },
     'snake': {
       'dm_name': 'SnakeMove',

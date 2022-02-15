@@ -93,7 +93,6 @@ def setup(do_id=None):
         'odf_list': [Speed],
     }
 
-
     da = iottalkjs.DAI({
         'apiUrl': ecEndpoint,
         'deviceModel': 'Ball-throw2',
@@ -111,11 +110,6 @@ projectInit({
     'smartphone': {
       'dm_name': 'Smartphone',
       'dfs': ['Acceleration-I'],
-      'callback': (do_id)=>{
-        let url = `${window.location.protocol}//${window.location.host}/cyberdevice/smartphone/${do_id}/`;
-        console.log(url);
-        genQrcode(url);
-      },
     },
     'snake': {
       'dm_name': 'SnakeMove',
