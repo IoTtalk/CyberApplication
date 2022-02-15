@@ -99,7 +99,7 @@ def setup(do_id=None):
         },
         'onRegister': onRegister,
     }
-    da = iottalkjs.DAI(profile)
+    da = new iottalkjs.DAI(profile)
     da.run()
 
 projectInit({
