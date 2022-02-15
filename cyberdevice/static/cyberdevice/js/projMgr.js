@@ -1,5 +1,5 @@
-const gen_qrcode = (html, id='qrcode1') => {
-	if(html){
+const genQrcode = (url, id='qrcode1') => {
+	if(url){
 		// if has qrcode2, show players text
 		if(id === 'qrcode2') {
 			$('.players').removeClass('visually-hidden');
@@ -10,25 +10,25 @@ const gen_qrcode = (html, id='qrcode1') => {
 	}
 }
 
-const gen_qrcode2 = (html) => {
-	gen_qrcode(html, 'qrcode2');
+const genQrcode2 = (url) => {
+	genQrcode(url, 'qrcode2');
 }
 
 const ccmapi = function() {
 	let DEBUG = false;
 	
-	let debug_callback = (d) => { if (DEBUG) {console.log(d);}};
+	let debugCallback = (d) => { if (DEBUG) {console.log(d);}};
 
-	let ag_request = (op, payload, callback) => {
+	let agRequest = (op, payload, callback) => {
 		let json = {'api_name': op, 'payload': payload}
-		if (ag_username && ag_password) {
-			json['username'] = ag_username
-			json['password'] = ag_password
-		} else if (ag_access_token) {
-			json['access_token'] = ag_access_token
+		if (agUsername && agPassword) {
+			json['username'] = agUsername
+			json['password'] = agPassword
+		} else if (agAccessToken) {
+			json['access_token'] = agAccessToken
 		}
 		axios.post(
-			ag_endpoint,
+			agEndpoint,
 			json=json
 		).then((request) => {
 			if(request.data.state == 'ok' && callback){
@@ -37,29 +37,29 @@ const ccmapi = function() {
 		}).catch((e) => {console.log(e);})
 	}
 
-	let projectGet = (p_id, callback=debug_callback) => {
-		ag_request('project.get', {'p_id': p_id}, callback);
+	let projectGet = (p_id, callback=debugCallback) => {
+		agRequest('project.get', {'p_id': p_id}, callback);
 	}
 
-	let projectCreate = (p_name, callback=debug_callback) => {
+	let projectCreate = (p_name, callback=debugCallback) => {
 		console.log('project name:', p_name);
-		ag_request('project.create', {'p_name': p_name}, callback);
+		agRequest('project.create', {'p_name': p_name}, callback);
 	}
 
-	let projectOn = (p_id, callback=debug_callback) => {
-		ag_request('project.on', {'p_id': p_id}, callback);
+	let projectOn = (p_id, callback=debugCallback) => {
+		agRequest('project.on', {'p_id': p_id}, callback);
 	}
 
-	let projectDelete = (p_id, callback=debug_callback) => {
-		ag_request('project.delete', {'p_id': p_id}, callback);
+	let projectDelete = (p_id, callback=debugCallback) => {
+		agRequest('project.delete', {'p_id': p_id}, callback);
 	}
 
-	let doCreate = (p_id, dm_name, dfs, callback=debug_callback) => {
-		ag_request('deviceobject.create', {'p_id': p_id, 'dm_name': dm_name, 'dfs': dfs}, callback);
+	let doCreate = (p_id, dm_name, dfs, callback=debugCallback) => {
+		agRequest('deviceobject.create', {'p_id': p_id, 'dm_name': dm_name, 'dfs': dfs}, callback);
 	}
 
-	let naCreate = (p_id, joins, callback=debug_callback) => {
-		ag_request('networkapplication.create', {'p_id': p_id, 'joins': joins}, callback);
+	let naCreate = (p_id, joins, callback=debugCallback) => {
+		agRequest('networkapplication.create', {'p_id': p_id, 'joins': joins}, callback);
 	}
 
 	return {
@@ -72,7 +72,7 @@ const ccmapi = function() {
 	}
 }();
 
-const project_init = (profile) => {
+const projectInit = (profile) => {
 	/* example:
 
 		profile = {
@@ -122,12 +122,12 @@ const project_init = (profile) => {
 	}
 
 	// for generate random project name
-	let random_string = () => {
+	let randomString = () => {
 		return (Math.random() + 1).toString(36).substring(2);
 	}
 
 	// create Project
-	ccmapi.projectCreate(random_string(), (result) => {
+	ccmapi.projectCreate(randomString(), (result) => {
 		p_id = result;
 		for (let do_key in profile.dos){
 			let do_ = profile.dos[do_key];
@@ -155,10 +155,10 @@ const project_init = (profile) => {
 	});
 }
 
-if(typeof qrcode1_html !== 'undefined' && qrcode1_html){
-	gen_qrcode(qrcode1_html);
+if(typeof qrcodeHtml1 !== 'undefined' && qrcodeHtml1){
+	genQrcode(qrcodeHtml1);
 
-	if(typeof qrcode2_html !== 'undefined' && qrcode2_html){
-		gen_qrcode(qrcode2_html, 'qrcode2');
+	if(typeof qrcodeHtml2 !== 'undefined' && qrcodeHtml2){
+		genQrcode(qrcodeHtml2, 'qrcode2');
 	}
 }

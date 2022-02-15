@@ -1,11 +1,11 @@
-const da_register = (do_id=null) => {
+const daRegister = (do_id=null) => {
 	let Orientation_O1 = (data)=>{
 		offsetX = data[2] * 20;
 		offsetY = data[1] * 20;
 	}
 
 	let da = new iottalkjs.DAI({
-		apiUrl: ec_endpoint,
+		apiUrl: ecEndpoint,
 		deviceModel: 'SnakeMove',
 		odfList: [[Orientation_O1, ['None', 'None', 'None']]],
 		profile: {
@@ -16,7 +16,7 @@ const da_register = (do_id=null) => {
 	da.run();
 };
 
-project_init({
+projectInit({
 	'dos': {
 		'smartphone': {
 			'dm_name': 'Smartphone',
@@ -24,13 +24,13 @@ project_init({
 			'callback': (do_id)=>{
 				let url = `${window.location.protocol}//${window.location.host}/cyberdevice/smartphone/${do_id}/`;
 				console.log(url);
-				gen_qrcode(url);
+				genQrcode(url);
 			},
 		},
 		'snake': {
 			'dm_name': 'SnakeMove',
 			'dfs': ['Orientation-O1'],
-			'callback': da_register,
+			'callback': daRegister,
 		}
 	},
 	'joins': [

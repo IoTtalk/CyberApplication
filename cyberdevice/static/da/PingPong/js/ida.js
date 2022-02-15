@@ -3,7 +3,7 @@ Game.ready(function() {
 	pong = Game.start('game', Pong, {});
 });
 
-const da_register = (do_id=null) => {
+const daRegister = (do_id=null) => {
 	let Orientation_O1 = (data)=>{
 		if(data[1] < -10){
 			pong.leftPaddle.stopMovingUp();
@@ -31,7 +31,7 @@ const da_register = (do_id=null) => {
 	}
 
 	let da = new iottalkjs.DAI({
-		apiUrl: ec_endpoint,
+		apiUrl: ecEndpoint,
 		deviceModel: 'Paddle',
 		odfList: [
 			[Orientation_O1, ['None', 'None', 'None']],
@@ -45,7 +45,7 @@ const da_register = (do_id=null) => {
 	da.run();
 };
 
-project_init({
+projectInit({
 	'dos': {
 		'smartphone1': {
 			'dm_name': 'Smartphone',
@@ -53,7 +53,7 @@ project_init({
 			'callback': (do_id)=>{
 				let url = `${window.location.protocol}//${window.location.host}/cyberdevice/smartphone/${do_id}/`;
 				console.log(url);
-				gen_qrcode(url);
+				genQrcode(url);
 			},
 		},
 		'smartphone2': {
@@ -62,13 +62,13 @@ project_init({
 			'callback': (do_id)=>{
 				let url = `${window.location.protocol}//${window.location.host}/cyberdevice/smartphone/${do_id}/`;
 				console.log(url);
-				gen_qrcode2(url);
+				genQrcode2(url);
 			},
 		},
 		'paddle': {
 			'dm_name': 'Paddle',
 			'dfs': ['Orientation-O1', 'Orientation-O2'],
-			'callback': da_register,
+			'callback': daRegister,
 		}
 	},
 	'joins': [

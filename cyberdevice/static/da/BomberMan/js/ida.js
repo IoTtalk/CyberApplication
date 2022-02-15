@@ -1,6 +1,6 @@
 gGameEngine.load()
 
-const da_register = (do_id=null) => {
+const daRegister = (do_id=null) => {
 	let bomb = 32; // space
 	let right = 39, left = 37, up = 38, down = 40; // →, ←, ↑, ↓
 	let threshold = 10; // Orientation_O threshold determines the direction
@@ -53,7 +53,7 @@ const da_register = (do_id=null) => {
 	let Orientation_O2 = (data)=>{}
 
 	let da = new iottalkjs.DAI({
-		apiUrl: ec_endpoint,
+		apiUrl: ecEndpoint,
 		deviceModel: 'Bombman',
 		odfList: [[Orientation_O1, ['None', 'None', 'None']], 
 							[Acceleration_O1, ['None', 'None', 'None']],
@@ -67,7 +67,7 @@ const da_register = (do_id=null) => {
 	da.run();
 };
 
-project_init({
+projectInit({
 	'dos': {
 		'smarphone1': {
 			'dm_name': 'Smartphone',
@@ -75,7 +75,7 @@ project_init({
 			'callback': (do_id)=>{
 				let url = `${window.location.protocol}//${window.location.host}/cyberdevice/smartphone/${do_id}/`;
 				console.log(url);
-				gen_qrcode(url);
+				genQrcode(url);
 			},
 		},
 		'smarphone2': {
@@ -84,13 +84,13 @@ project_init({
 			'callback': (do_id)=>{
 				let url = `${window.location.protocol}//${window.location.host}/cyberdevice/smartphone/${do_id}/`;
 				console.log(url);
-				//gen_qrcode2(url); // TODO support player2 qrcode
+				//genQrcode2(url); // TODO support player2 qrcode
 			},
 		},
 		'bombman': {
 			'dm_name': 'Bombman',
 			'dfs': ['Acceleration-O1', 'Acceleration-O2', 'Orientation-O1', 'Orientation-O2'],
-			'callback': da_register,
+			'callback': daRegister,
 		}
 	},
 	'joins': [

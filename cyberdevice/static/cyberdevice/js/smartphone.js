@@ -184,7 +184,7 @@
   function register(deviceName) {
 
     let da = new iottalkjs.DAI({
-      apiUrl: ec_endpoint,
+      apiUrl: ecEndpoint,
       deviceAddr: id,
       deviceName: deviceName,
       deviceModel: 'Smartphone',
