@@ -81,7 +81,7 @@ class VPython(View):
         )
 
     def get(self, request, *args, **kwargs):
-        da_name = self.kwargs['vp_name']
+        vp_name = self.kwargs['vp_name']
         return self._render(request, vp_name)
 
 
