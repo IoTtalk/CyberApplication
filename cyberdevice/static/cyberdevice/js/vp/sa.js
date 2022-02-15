@@ -22,7 +22,7 @@ const execute = function (code) {
   const jsCode = glowscript_compile(code, options);
   const program = eval(jsCode);
 
-  # console.log(jsCode);
+  // console.log(jsCode);
   program(function(err){
     if (err) console.log(err);
   });
