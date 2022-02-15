@@ -88,17 +88,12 @@ def Speed_O(data):
         balljump(data[0])
 
 def setup(do_id=None):
-    profile = {
-        'dm_name': 'Ball-throw2',
-        'odf_list': [Speed],
-    }
-
     da = iottalkjs.DAI({
         'apiUrl': ecEndpoint,
         'deviceModel': 'Ball-throw2',
         'odfList': [Speed_O],
         'profile': {
-            'is_sim': do_id != null,
+            'is_sim': do_id is not None,
             'do_id': do_id,
         }
     });
