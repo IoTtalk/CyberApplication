@@ -6,7 +6,7 @@ const genQrcode = (url, id='qrcode1') => {
     }
 
     // gen qrcode
-    $('#' + id).qrcode({'width': 196, 'height': 196, 'text': html});
+    $('#' + id).qrcode({'width': 196, 'height': 196, 'text': url});
   }
 }
 
