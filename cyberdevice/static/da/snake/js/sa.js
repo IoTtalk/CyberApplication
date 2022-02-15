@@ -5,10 +5,10 @@ const daRegister = (do_id=null) => {
   }
 
   let da = new iottalkjs.DAI({
-    apiUrl: ecEndpoint,
-    deviceModel: 'SnakeMove',
-    odfList: [[Orientation_O1, ['None', 'None', 'None']]],
-    profile: {
+    'apiUrl': ecEndpoint,
+    'deviceModel': 'SnakeMove',
+    'odfList': [[Orientation_O1, ['None', 'None', 'None']]],
+    'profile': {
       'is_sim': do_id != null,
       'do_id': do_id,
     }

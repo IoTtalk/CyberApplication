@@ -53,13 +53,13 @@ const daRegister = (do_id=null) => {
   let Orientation_O2 = (data)=>{}
 
   let da = new iottalkjs.DAI({
-    apiUrl: ecEndpoint,
-    deviceModel: 'Bombman',
-    odfList: [[Orientation_O1, ['None', 'None', 'None']],
+    'apiUrl': ecEndpoint,
+    'deviceModel': 'Bombman',
+    'odfList': [[Orientation_O1, ['None', 'None', 'None']],
               [Acceleration_O1, ['None', 'None', 'None']],
               [Orientation_O2, ['None', 'None', 'None']],
               [Acceleration_O2, ['None', 'None', 'None']]],
-    profile: {
+    'profile': {
       'is_sim': do_id != null,
       'do_id': do_id,
     }

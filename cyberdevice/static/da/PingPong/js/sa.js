@@ -31,13 +31,13 @@ const daRegister = (do_id=null) => {
   }
 
   let da = new iottalkjs.DAI({
-    apiUrl: ecEndpoint,
-    deviceModel: 'Paddle',
-    odfList: [
+    'apiUrl': ecEndpoint,
+    'deviceModel': 'Paddle',
+    'odfList': [
       [Orientation_O1, ['None', 'None', 'None']],
       [Orientation_O2, ['None', 'None', 'None']]
     ],
-    profile: {
+    'profile': {
       'is_sim': do_id != null,
       'do_id': do_id,
     }
