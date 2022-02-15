@@ -2,7 +2,7 @@ let audio = {}
 
 const preloadAudio = function(filename) {
   if (audio[filename] == undefined) {
-    audio[filename] = new Audio(`/cyberdevice/static/vp/${vp_name}/` + filename);
+    audio[filename] = new Audio(`/cyberdevice/static/vp/${vpName}/` + filename);
   }
 };
 
@@ -28,7 +28,7 @@ const execute = function (code) {
   });
 };
 
-const fetch_code = function(url){
+const fetchCode = function(url){
   $.get(url)
    .done(function (data) {
      execute(data);
@@ -42,15 +42,6 @@ window.__context = {
   glowscript_container: $('#glowscript'),
 };
 
-var originHash;
 $(function () {
-  originHash = window.location.hash;
-  fetch_code(`/cyberdevice/static/vp/${vp_name}/${vp_name}.py`);
+  fetchCode(`/cyberdevice/static/vp/${vpName}/${vpName}.py`);
 });
-
-$(window).on('hashchange', function (a) {
-  if (window.location.hash != originHash) {
-    window.location.hash = originHash;
-  }
-});
-
