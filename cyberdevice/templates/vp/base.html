@@ -1,55 +1,66 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en" class="h-100">
-	<head>
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1">
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
-		{% block favicon %}
-		<link rel="shortcut icon" type="image/x-icon" href="favicon.png">
-		{% endblock %}
-		<!--link rel="icon" href="{% static "images/favicon.ico" %}"-->
+    {% block favicon %}
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
+    {% endblock %}
+    <!--link rel="icon" href="{% static "images/favicon.ico" %}"-->
 
-		<!-- Bootstrap CSS -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-		<link rel="stylesheet" href="{% static 'cyberdevice/css/style.css' %}">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'cyberdevice/css/style.css' %}">
 
-		<title>{% block title %}VPython{% endblock %}</title>
-	</head>
+    <title>{% block title %}{{ vp_name }}{% endblock %}</title>
+  </head>
 
-	<body class="row text-center mt-4">
-		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 offset-lg-1 px-3">
-			<div class="qrcode-title mb-4">Please scan following QRCode</div>
-			<div class="mb-2">
-				<h5 class="players visually-hidden">player1</h5>
-				<div id="qrcode1"></div>
-			</div>
-			<div>
-				<h5 class="players visually-hidden">player2</h5>
-				<div id="qrcode2"></div>
-			</div>
-		</div>
+  <body class="row text-center mt-4">
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 offset-lg-1 px-3">
+      <div class="qrcode-title mb-4">Please scan following QRCode</div>
+      <div class="mb-2">
+        <h5 class="players visually-hidden">player1</h5>
+        <div id="qrcode1"></div>
+      </div>
+      <div>
+        <h5 class="players visually-hidden">player2</h5>
+        <div id="qrcode2"></div>
+      </div>
+    </div>
 
-		<div id="vp_container" class="col-xs-12 col-sm-8 col-md-8 col-lg-7">
-			<div id="glowscript" class="glowscript"></div>
-		</div>
+    <div id="vp_container" class="col-xs-12 col-sm-8 col-md-8 col-lg-7">
+      <div id="glowscript" class="glowscript"></div>
+    </div>
 
-		<script defer src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-		<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
-		<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
-		<script defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<script defer src="https://iottalk.github.io/iottalk-js/iottalkjs-v2.3.2.js"></script>
-		<script defer src="{% static 'cyberdevice/js/projMgr.js' %}"></script>
+    <script defer src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js" integrity="sha512-NFUcDlm4V+a2sjPX7gREIXgCSFja9cHtKPOL1zj6QhnE0vcY695MODehqkaGYTLyL2wxe/wtr4Z49SvqXq12UQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js" integrity="sha512-rCjfoab9CVKOH/w/T6GbBxnAH5Azhy4+q1EXW5XEURefHbIkRbQ++ZR+GBClo3/d3q583X/gO4FKmOFuhkKrdA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://polyfill.io/v3/polyfill.min.js?features=Array.from,Promise,Symbol,Object.setPrototypeOf,Object.getOwnPropertySymbols,Set,Math.trunc"></script>
+    <script defer src="https://iottalk.github.io/iottalk-js/iottalkjs-v2.3.2.js"></script>
 
-		<script type="text/javascript">
-			const ecEndpoint = '{{ ec_endpoint }}';
-			const agEndpoint = '{{ ag_endpoint }}';
-			const agUsername = '{{ ag_username }}';
-			const agPassword = '{{ ag_password }}';
-			const agAccessToken = '{{ ag_access_token }}';
-		</script>
-		{% block da_script %}{% endblock %}
-	</body>
+    <script defer src="{% static 'cyberdevice/js/projMgr.js' %}"></script>
+
+    <script defer src="{% static 'cyberdevice/js/vp/RScompiler.2.7.min.js' %}"></script>
+    <script defer src="{% static 'cyberdevice/js/vp/RSrun.2.7.min.js' %}"></script>
+    <script defer src="{% static 'cyberdevice/js/vp/compiler.2.7.min.js' %}"></script>
+    <script defer src="{% static 'cyberdevice/js/vp/glow.2.7.min.js' %}"></script>
+    <script defer src="{% static 'cyberdevice/js/vp/sa.js' %}"></script>
+
+    <script type="text/javascript">
+      const vpName = '{{ vp_name }}';
+      const ecEndpoint = '{{ ec_endpoint }}';
+      const agEndpoint = '{{ ag_endpoint }}';
+      const agUsername = '{{ ag_username }}';
+      const agPassword = '{{ ag_password }}';
+      const agAccessToken = '{{ ag_access_token }}';
+    </script>
+    {% block da_script %}{% endblock %}
+  </body>
 </html>
