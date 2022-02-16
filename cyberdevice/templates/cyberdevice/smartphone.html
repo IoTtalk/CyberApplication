@@ -3,7 +3,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <title>Smartphone</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'cyberdevice/css/smartphone.css' %}">
@@ -156,7 +156,7 @@
   <script src="https://iottalk.github.io/iottalk-js/iottalkjs-v2.3.2.js"></script>
   <script defer type="application/javascript" src="{% static 'cyberdevice/js/smartphone.js' %}"></script>
   <script type="text/javascript">
-    var ec_endpoint = '{{ ec_endpoint }}';
+    var ecEndpoint = '{{ ec_endpoint }}';
     var do_id = {{ do_id }};
   </script>
 </html>

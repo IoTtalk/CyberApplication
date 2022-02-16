@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>IoTtalk</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <title>IoTtalk</title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-		<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
-	</head>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+  </head>
 
-	<body>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<div class="container-fluid">
-    		<a class="navbar-brand" href="#">Cyber Device</a>
-    	</div>
-		</nav>
-		<div class="container mt-5">
-			<div class="col-md-3 mx-auto">
-				<h2 class="mb-3">choose application</h2>
-				{% for da in da_list %}
-				<a href="/cyberdevice/da/{{ da }}/" class="list-group-item">{{ da }}</a>
-				{% endfor %}
-			</div>
-		</div>
-	</body>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+      <a class="navbar-brand" href="#">Cyber Device</a>
+    </div>
+    </nav>
+    <div class="container mt-5">
+      <div class="col-md-3 mx-auto">
+        <h2 class="mb-3">choose application</h2>
+        {% for da in da_list %}
+        <a href="/cyberdevice/da/{{ da }}/" class="list-group-item">{{ da }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
 </html>

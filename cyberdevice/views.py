@@ -8,12 +8,16 @@ from django.views import View
 # load da list
 def get_da_list():
     dirs = os.listdir(os.path.join('', 'cyberdevice/templates/da'))
-    da_list = [da.replace('.html', '') for da in dirs if '.html' in da]
+    return [da.replace('.html', '') for da in dirs if '.html' in da]
 
-    return da_list
+# load vp list
+def get_vp_list():
+    return os.listdir(os.path.join('', 'cyberdevice/static/vp'))
 
 da_list = get_da_list()
+vp_list = get_vp_list()
 print('da_list', da_list)
+print('vp_list', vp_list)
 
 
 class Index(View):
@@ -57,6 +61,28 @@ class CyberDevice(View):
     def get(self, request, *args, **kwargs):
         da_name = self.kwargs['da_name']
         return self._render(request, da_name)
+
+
+class VPython(View):
+    template_name = 'vp/base.html'
+
+    def _render(self, request, vp_name):
+        return render(
+            request,
+            self.template_name,
+            {
+                'vp_name': vp_name,
+                'ec_endpoint': settings.EC_ENDPOINT,
+                'ag_endpoint': settings.AG_ENDPOINT,
+                'ag_username': settings.AG_USERNAME,
+                'ag_password': settings.AG_PASSWORD,
+                'ag_access_token': settings.AG_ACCESS_TOKEN,
+            }
+        )
+
+    def get(self, request, *args, **kwargs):
+        vp_name = self.kwargs['vp_name']
+        return self._render(request, vp_name)
 
 
 class Smartphone(View):

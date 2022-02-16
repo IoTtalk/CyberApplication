@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 
-from cyberdevice.views import CyberDevice, EcEndpoint, Index, Smartphone
+from cyberdevice.views import CyberDevice, EcEndpoint, Index, Smartphone, VPython
 
 urlpatterns = [
     url(r'^index/$', Index.as_view()),
     url(r'^ec_endpoint/', EcEndpoint.as_view()),
     url(r'^da/(?P<da_name>[\w-]+)/$', CyberDevice.as_view()),
+    url(r'^vp/(?P<vp_name>[\w-]+)/$', VPython.as_view()),
     url(r'^smartphone/(?P<do_id>[0-9]+)/$', Smartphone.as_view()),
 ]

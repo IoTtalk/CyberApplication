@@ -118,7 +118,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/cyberdevice/static/'
 
 EC_ENDPOINT = ''
 
@@ -126,4 +126,6 @@ AG_ENDPOINT = ''
 
 AG_USERNAME = ''
 
-AG_PASSWORD = ''  # TODO
+AG_PASSWORD = ''
+
+AG_ACCESS_TOKEN = ''
