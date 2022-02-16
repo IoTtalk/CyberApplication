@@ -14,27 +14,19 @@ def get_da_list():
 def get_vp_list():
     return os.listdir(os.path.join('', 'cyberdevice/static/vp'))
 
-da_list = get_da_list()
-vp_list = get_vp_list()
-print('da_list', da_list)
-print('vp_list', vp_list)
-
 
 class Index(View):
     template_name = 'cyberdevice/index.html'
 
-    def _render(self, request):
+    def get(self, request, *args, **kwargs):
         return render(
             request,
             self.template_name,
             {
-                'da_list': da_list,
-                'vp_list': vp_list,
+                'da_list': get_da_list(),
+                'vp_list': get_vp_list(),
             }
         )
-
-    def get(self, request, *args, **kwargs):
-        return self._render(request)
 
 
 class EcEndpoint(View):
