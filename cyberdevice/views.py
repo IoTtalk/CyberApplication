@@ -29,6 +29,7 @@ class Index(View):
             self.template_name,
             {
                 'da_list': da_list,
+                'vp_list': vp_list,
             }
         )
 
