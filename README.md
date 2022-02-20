@@ -55,6 +55,10 @@
 
         python manage.py runserver
 
+5. 檢視網頁
+
+        https://<your_domain_or_ip/cyberdevice/index/
+
 ## 新增 VPython 應用
 
 以下說明，將使用 `cyberdevice/static/vp/Ball-throw2/` 作為範例。
