@@ -82,7 +82,7 @@ def Speed_O(data):
         balljump(data[0])
 
 
-def setup(do_id=None):
+def daRegister(do_id=None):
     init()
 
     def onRegister():
@@ -102,16 +102,23 @@ def setup(do_id=None):
     da = new iottalkjs.DAI(profile)
     da.run()
 
+
+def smartphoneCallback(do_id):
+    origin = window.location.origin
+    url = origin + '/cyberdevice/smartphone/' + do_id
+    genQrcode(url);
+
 projectInit({
   'dos': {
     'smartphone': {
       'dm_name': 'Smartphone',
       'dfs': ['Acceleration-I'],
+      'callback': smartphoneCallback,
     },
     'ball': {
       'dm_name': 'Ball-throw2',
       'dfs': ['Speed-O'],
-      'callback': setup,
+      'callback': daRegister,
     }
   },
   'joins': [
