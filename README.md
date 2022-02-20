@@ -57,7 +57,7 @@
 
 5. 檢視網頁
 
-        https://<your_domain_or_ip/cyberdevice/index/
+        https://<your_domain_or_ip>/cyberdevice/index/
 
 ## 新增 VPython 應用
 
