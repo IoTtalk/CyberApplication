@@ -3,7 +3,7 @@
 ## 前言
 
 此專案為提供一網頁平台，讓使用者能藉由手機掃描 QRCode 產生的手機感測器網頁，與顯示的網頁應用程式互動。
-![Ball-throw2](https://github.com/IoTtalk/CyberApplication/doc/images/vpython-sample.png)
+![Ball-throw2](https://github.com/IoTtalk/CyberApplication/blob/master/doc/images/vpython-sample.png)
 
 此專案已事先定義好一些基本函數及資料結構，只要開發者依照指定的函數呼叫方式及資料格式，就可以快速新增應用，而不用撰寫過多的程式碼，詳細內容請參閱[新增應用](#新增-VPython-應用)。
 
