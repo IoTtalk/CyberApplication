@@ -177,3 +177,22 @@
     並且提供了 `genQrcode(<url>)` 函式讓使用者能指定畫面上 QRCode 產生的網址。
     
     **Note**: 若您的 *Smartphone* 的 <do_alias_name> 為 `smartphone`，且未設定 callback 函式，系統將自動產生預設的 QRCode 網址，可以不用特別撰寫 *smartphoneCallback*。
+
+
+5. 為了確保未來新的 IoTtalk server 依然可使用此平台，請依 `model.json` 的範例，將新增的應用加入至 `model.json` 中。
+
+    該檔案中含有二個陣列，分別是 `DeviceFeature` 及 `DeviceModel`
+
+    - **DeviceFeature** :
+        - df_name: 您所新增的 Device Feature 名稱
+        - df_type: 您所新增的 Device Feture 類型，可為 `input` or `output`，正常來說應為 `output`
+        - df_category: 請填 `None` 即可
+        - comment: 請簡述該 Devie Feature 的用途。
+        - df_parameter: 此為一個陣列，請依序填入此 Feature 所使用的數值格式，每一個數值格式需包含：
+            - param_type: 參數類型，可為 `int`, `float`, `boolean`, `json`, `string`
+            - min: 最小值 (若為 `json` 或 `string`，填 0 即可)
+            - max: 最大值 (若為 `json` 或 `string`，填 0 即可)
+
+    - **DeviceModel**
+        - dm_name: 您所新增的 Device Model 名稱
+        - df_list: 此 Device Model 所使用的 Device Feature 陣列，只需提供 Device Feature Name (df_name)，可使用系統原有的，也可以使用前述 DeviceFeature 中新增的。
