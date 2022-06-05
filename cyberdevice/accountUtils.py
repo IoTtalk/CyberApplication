@@ -10,6 +10,7 @@ _access_token_expired = None
 
 
 def get_access_token():
+    global _access_token_cache, _access_token_expired
     if not settings.ACCOUNT_HOST:
         return ''
 
@@ -25,7 +26,7 @@ def get_access_token():
     if not settings.ACCOUNT_OAUTH2_REDIRECT_URI:
         return ''
 
-    if _access_token_cache and _access_token_expired > datetime.datetime.now():
+    if _access_token_cache is not None and _access_token_expired is not None and _access_token_expired > datetime.datetime.now():
         return _access_token_cache
 
     api_client.set_host(settings.ACCOUNT_HOST)
