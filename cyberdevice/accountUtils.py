@@ -5,6 +5,10 @@ from django.conf import settings
 
 import cyberdevice.accountClient as api_client
 
+_access_token_cache = None
+_access_token_expired = None
+
+
 def get_access_token():
     if not settings.ACCOUNT_HOST:
         return ''
@@ -21,6 +25,9 @@ def get_access_token():
     if not settings.ACCOUNT_OAUTH2_REDIRECT_URI:
         return ''
 
+    if _access_token_cache and _access_token_expired > datetime.datetime.now():
+        return _access_token_cache
+
     api_client.set_host(settings.ACCOUNT_HOST)
     code = api_client.oauth2_authorize(
         settings.ACCOUNT_API_TOKEN,
@@ -35,8 +42,8 @@ def get_access_token():
         code,
         settings.ACCOUNT_OAUTH2_REDIRECT_URI)
 
-    access_token = token_response['access_token']
-    # print(f'access_token: {access_token}')
-    return access_token
-    # user_info = jwt.decode(token_response['id_token'], options={'verify_signature': False})
-    # print('user_info:', user_info)
+    _access_token_cache = token_response['access_token']
+    expire_in = token_response['expires_in']
+    _access_token_expired = datetime.datetime.now() + datetime.timedelta(seconds=expire_in)
+
+    return _access_token_cache
