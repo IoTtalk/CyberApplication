@@ -1,9 +1,9 @@
 import datetime
-import accountClient as api_client
 import jwt
 
 from django.conf import settings
 
+import cyberdevice.accountClient as api_client
 
 def get_access_token():
     if not settings.ACCOUNT_HOST:
