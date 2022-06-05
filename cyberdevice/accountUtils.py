@@ -29,7 +29,7 @@ def get_access_token():
         settings.ACCOUNT_OAUTH2_REDIRECT_URI)
 
     token_response = api_client.oauth2_token_request(
-        settings.ACCOUNT_OIDC_AUTHORIZATION_ENDPOINT,
+        settings.ACCOUNT_OIDC_TOKEN_ENDPOINT,
         settings.ACCOUNT_CLIENT_ID,
         settings.ACCOUNT_CLIENT_SECRET,
         code,
