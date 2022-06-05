@@ -5,6 +5,8 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
 
+from accountUtils import get_access_token
+
 # load da list
 def get_da_list():
     dirs = os.listdir(os.path.join('', 'cyberdevice/templates/da'))
@@ -47,7 +49,7 @@ class CyberDevice(View):
                 'ag_endpoint': settings.AG_ENDPOINT,
                 'ag_username': settings.AG_USERNAME,
                 'ag_password': settings.AG_PASSWORD,
-                'ag_access_token': settings.AG_ACCESS_TOKEN,
+                'ag_access_token': get_access_token(),
             }
         )
 
@@ -69,7 +71,7 @@ class VPython(View):
                 'ag_endpoint': settings.AG_ENDPOINT,
                 'ag_username': settings.AG_USERNAME,
                 'ag_password': settings.AG_PASSWORD,
-                'ag_access_token': settings.AG_ACCESS_TOKEN,
+                'ag_access_token': get_access_token(),
             }
         )
 

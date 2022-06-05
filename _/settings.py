@@ -128,4 +128,15 @@ AG_USERNAME = ''
 
 AG_PASSWORD = ''
 
-AG_ACCESS_TOKEN = ''
+# address of account system in hostname:port, without tailing '/'
+# ex: 'https://account.iottalk.tw/account'
+ACCOUNT_HOST = ''
+# You can find your API TOKEN in your Account Subsystem Profile page
+ACCOUNT_API_TOKEN = ''
+# You can find your CLIENT ID and CLIENT SECRET in Account Subsystem Application Detail page
+ACCOUNT_CLIENT_ID = ''
+ACCOUNT_CLIENT_SECRET = ''
+# You can find your REDIRECT URI in Account Subsystem Application Detail page
+ACCOUNT_OAUTH2_REDIRECT_URI = ''
+ACCOUNT_OIDC_AUTHORIZATION_ENDPOINT = f'https://{ACCOUNT_HOST}/oauth2/v1/authorize/'
+ACCOUNT_OIDC_TOKEN_ENDPOINT = f'https://{ACCOUNT_HOST}/oauth2/v1/token/'
