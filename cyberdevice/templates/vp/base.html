@@ -34,8 +34,6 @@
 
     <div id="vp_container" class="col-xs-12 col-sm-8 col-md-8 col-lg-7">
       <div id="glowscript" class="glowscript"></div>
-      <h3>How to play</h3>
-      <h5>甩動手機</h5>
     </div>
 
     <script defer src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -54,6 +52,8 @@
     <script defer src="{% static 'cyberdevice/js/vp/compiler.2.7.min.js' %}"></script>
     <script defer src="{% static 'cyberdevice/js/vp/glow.2.7.min.js' %}"></script>
     <script defer src="{% static 'cyberdevice/js/vp/sa.js' %}"></script>
+  
+    <div id="content"></div>
 
     <script type="text/javascript">
       const vpName = '{{ vp_name }}';
