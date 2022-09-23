@@ -8,6 +8,7 @@ preloadAudio('Startup.wav')
 preloadAudio('chord.wav')
 preloadAudio('gj.wav')
 
+renderInfo("掃描完 QR code 後, 試試看甩動手機！")
 
 def init():
     global scene

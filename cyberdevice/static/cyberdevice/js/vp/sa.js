@@ -38,6 +38,10 @@ const fetchCode = function(url){
   });
 };
 
+const renderInfo = function (info){
+  document.getElementById('content').innerHTML = `<h4>${info}</h4>`;
+}
+
 window.__context = {
   glowscript_container: $('#glowscript'),
 };
